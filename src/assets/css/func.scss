@@ -1,0 +1,54 @@
+// 单位rem
+@function px ($num) {
+  @return ($num / 75)+rem;
+}
+
+// 字体全套
+@mixin font-all($size: 28px, $color: $color-font, $fontFamily: $family-main) {
+  font-family: $fontFamily;
+  font-size: $size;
+  color: $color;
+}
+
+@mixin clearFix {
+  display: block;
+  /*清除浮动样式类*/
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+@mixin fontWeight($size: 20px) {
+  font-size: $size;
+  font-weight: 600;
+
+  @content;
+}
+@mixin fontLight($size: 14px) {
+  font-size: $size;
+
+  @content;
+}
+@mixin imgBase($width: 100%) {
+  position: relative;
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $width;
+    height: $width;
+
+    @content;
+  }
+}
+@mixin bgBase($width: 100%) {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @content;
+}
