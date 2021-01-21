@@ -11,7 +11,6 @@
 
       <!-- 主内容(ani:本标识为选择是否显示页面切换转场效果) -->
       <transition-group
-        v-if="ani"
         :class="[
           'main-transition',
           { 'has-sidebar': children && children.length },
@@ -21,9 +20,6 @@
       >
         <router-view v-if="newPage" :key="key" class="container" />
       </transition-group>
-      <div v-else-if="newPage" class="main-transition">
-        <router-view :key="key" class="container" />
-      </div>
     </div>
   </div>
 </template>
@@ -60,11 +56,13 @@ export default {
   watch: {
     $route: {
       handler(route) {
+        // if (this.ani) {
         // 页面交互效果
         this.newPage = false;
         setTimeout(() => {
           this.newPage = true;
         }, 200);
+        // }
 
         // 侧边栏数据
         let routeMainName =
